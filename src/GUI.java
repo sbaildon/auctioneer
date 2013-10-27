@@ -5,18 +5,20 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class GUI implements ActionListener {
-    private Panel panel;
+    private final int LOGIN_WIDTH = 480;
+    private final int LOGIN_HEIGHT = 300;
+    private final int AUCT_WIDTH = 600;
+    private final int AUCT_HEIGHT = 600;
+
     private TextField username, email;
     private Button loginBtn, regisBtn;
-    private Label intro, info;
-    private Frame frame;
+    private Label intro, msg;
     private AuctionClient client;
+    private Frame auctionFrame;
 
     public GUI() {
         client = client.getInstance();
-        this.frame = windowFrame("Auction House", 480, 300);
-        this.frame.add(loginPanel(480, 300));
-        this.frame.setVisible(true);
+        auctionFrame = auctionWindow();
     }
 
     private Frame windowFrame(String title, int width, int height){
@@ -36,7 +38,9 @@ public class GUI implements ActionListener {
     }
 
     private Panel loginPanel(int width, int height) {
-        intro = new Label("Login");
+        Panel panel;
+
+        intro = new Label("Hello");
         intro.setFont(new Font("Sans Serif", Font.PLAIN, 38));
         intro.setBounds(((width / 2) - 52), 30, 105, 400);
 
@@ -56,9 +60,9 @@ public class GUI implements ActionListener {
         regisBtn.setBounds(((width / 2) + 7), (height - (height / 3)), 75, 25);
         regisBtn.addActionListener(this);
 
-        info = new Label();
-        info.setFont(new Font("Sans Serif", Font.PLAIN, 12));
-        info.setBounds(((width / 2) - 52), 30, 300, 104);
+        msg = new Label();
+        msg.setFont(new Font("Sans Serif", Font.PLAIN, 12));
+        msg.setBounds(((width / 2) - 52), (height - 60), 300, 104);
 
         panel = new Panel();
         panel.setLayout(null);
@@ -68,18 +72,87 @@ public class GUI implements ActionListener {
         panel.add(username);
         panel.add(email);
         panel.add(intro);
-        panel.add(info);
+        panel.add(msg);
 
         return panel;
     }
 
-    public void provideFeedback(String message) {
-        info.setText(message);
+    public Frame loginWindow() {
+        Frame frame;
+        Panel panel;
+
+        frame = windowFrame("Login", LOGIN_WIDTH, LOGIN_HEIGHT);
+        panel = loginPanel(LOGIN_WIDTH, LOGIN_HEIGHT);
+        frame.add(panel);
+        frame.setVisible(true);
+
+        return frame;
+    }
+
+    private Panel auctionPanel(int width, int height) {
+        Panel panel, auctions, details;
+
+
+        panel = new Panel();
+        panel.setLayout(new BorderLayout());
+
+        auctions = new Panel();
+
+        details = new Panel();
+
+        panel.add(auctions, BorderLayout.WEST);
+        panel.add(details, BorderLayout.CENTER);
+        panel.add(statusPanel(), BorderLayout.SOUTH);
+
+        return panel;
+    }
+
+    private Panel auctionList() {
+        Panel panel;
+
+        panel = new Panel();
+
+        return panel;
+    }
+
+    private Panel statusPanel() {
+        Panel panel;
+
+        msg.setText("Ready");
+        msg.setAlignment(Label.LEFT);
+
+        panel = new Panel();
+        panel.add(msg);
+
+        return panel;
+    }
+
+    private Frame auctionWindow() {
+        Frame frame;
+        Panel panel;
+
+        frame = windowFrame("Auction House", AUCT_WIDTH, AUCT_HEIGHT);
+        panel = auctionPanel(AUCT_WIDTH, AUCT_HEIGHT);
+
+        frame.add(panel);
+        frame.setVisible(true);
+
+        return frame;
+    }
+
+    public void proceedToAuction() {
+        auctionFrame.setVisible(false);
+        auctionFrame = null;
+        auctionFrame = auctionWindow();
+    }
+
+    public void sendMessage(String message) {
+        msg.setText(message);
         try {
             Thread.sleep(2000);
         } catch (Exception e) {
         }
-        info.setText(null);
+        msg.setText(null);
     }
 
     @Override

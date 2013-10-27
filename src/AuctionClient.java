@@ -1,4 +1,5 @@
 import java.rmi.Naming;
+import java.util.ArrayList;
 
 public class AuctionClient {
     public static final AuctionClient client = new AuctionClient();
@@ -8,11 +9,12 @@ public class AuctionClient {
     public static void main(String args[]) {
         try {
             a = (Auction) Naming.lookup("rmi://localhost:2020/AuctioneerService");
-            gui = new GUI();
         } catch (Exception e) {
             System.out.println("Failed to find RMI");
             e.printStackTrace();
+            return;
         }
+        gui = new GUI();
     }
 
     private AuctionClient() {
@@ -27,9 +29,9 @@ public class AuctionClient {
         user = new User(name, email);
         try {
             if (a.addUser(user)) {
-                gui.provideFeedback("Account created");
+                gui.sendMessage("Account created");
             } else {
-                gui.provideFeedback("Email already in use");
+                gui.sendMessage("Email already in use");
             }
         } catch (Exception e) {
             System.out.println("Failed to create user (serious)");
@@ -41,10 +43,15 @@ public class AuctionClient {
         user = new User(name, email);
         try {
             if (a.login(user)) {
+                gui.proceedToAuction();
+            } else {
+                gui.sendMessage("Account doesn't exist");
             }
         } catch (Exception e) {
-            gui.provideFeedback("Failed to login");
+            gui.sendMessage("Failed to login");
         }
     }
+
+    
 
 }
