@@ -10,15 +10,15 @@ public class GUI implements ActionListener {
     private final int AUCT_WIDTH = 600;
     private final int AUCT_HEIGHT = 600;
 
-    private TextField username, email;
-    private Button loginBtn, regisBtn;
-    private Label intro, msg;
+    private Button createBtn;
+    private Label msg;
+    private Frame mainAuctionWindow;
+
     private AuctionClient client;
-    private Frame auctionFrame;
 
     public GUI() {
         client = client.getInstance();
-        auctionFrame = auctionWindow();
+        mainAuctionWindow = loginWindow();
     }
 
     private Frame windowFrame(String title, int width, int height){
@@ -39,6 +39,9 @@ public class GUI implements ActionListener {
 
     private Panel loginPanel(int width, int height) {
         Panel panel;
+        Label intro;
+        Button loginBtn, regisBtn;
+        final TextField username, email;
 
         intro = new Label("Hello");
         intro.setFont(new Font("Sans Serif", Font.PLAIN, 38));
@@ -54,13 +57,23 @@ public class GUI implements ActionListener {
 
         loginBtn = new Button("Login");
         loginBtn.setBounds(((width / 2) - 77), (height - (height / 3)), 75, 25);
-        loginBtn.addActionListener(this);
+        loginBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                client.login(username.getText(), email.getText());
+            }
+        });
 
         regisBtn = new Button("Register");
         regisBtn.setBounds(((width / 2) + 7), (height - (height / 3)), 75, 25);
-        regisBtn.addActionListener(this);
+        regisBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                client.newUser(username.getText(), email.getText());
+            }
+        });
 
-        msg = new Label();
+        msg = new Label("");
         msg.setFont(new Font("Sans Serif", Font.PLAIN, 12));
         msg.setBounds(((width / 2) - 52), (height - 60), 300, 104);
 
@@ -89,25 +102,81 @@ public class GUI implements ActionListener {
         return frame;
     }
 
-    private Panel auctionPanel(int width, int height) {
-        Panel panel, auctions, details;
+    private void createNewAuctionDialog() {
+        final Button ok;
+        final TextField name, reservePrice, startingPrice;
+        final Dialog newAuctionDialog;
 
+        name = new TextField(15);
+        name.setText("Item name");
+
+        reservePrice = new TextField(6);
+        reservePrice.setText("Reserve");
+
+        startingPrice = new TextField(6);
+        startingPrice.setText("Starting");
+
+        ok = new Button("Ok");
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ok.getParent().setVisible(false);
+                client.addItem(name.getText(),
+                            Integer.parseInt(reservePrice.getText()),
+                            Integer.parseInt(startingPrice.getText()));
+            }
+        });
+
+        newAuctionDialog = new Dialog(mainAuctionWindow, "New Auction", true);
+
+        newAuctionDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                newAuctionDialog.setVisible(false);
+            }
+        });
+
+        newAuctionDialog.setSize(new Dimension(170, 120));
+        newAuctionDialog.setLayout(new FlowLayout());
+        newAuctionDialog.setLocationRelativeTo(null);
+
+        newAuctionDialog.add(name);
+        newAuctionDialog.add(reservePrice);
+        newAuctionDialog.add(startingPrice);
+        newAuctionDialog.add(ok);
+
+        newAuctionDialog.setVisible(true);
+    }
+
+    private Panel auctionPanel(int width, int height) {
+        Panel panel, auctions;
 
         panel = new Panel();
         panel.setLayout(new BorderLayout());
 
         auctions = new Panel();
 
-        details = new Panel();
-
         panel.add(auctions, BorderLayout.WEST);
-        panel.add(details, BorderLayout.CENTER);
+        panel.add(detailsPanel(), BorderLayout.CENTER);
         panel.add(statusPanel(), BorderLayout.SOUTH);
 
         return panel;
     }
 
-    private Panel auctionList() {
+    private Panel detailsPanel() {
+        Panel panel;
+
+        panel = new Panel();
+
+        createBtn = new Button("Create");
+        createBtn.addActionListener(this);
+
+        panel.add(createBtn);
+
+        return panel;
+    }
+
+    private Panel auctionListPanel() {
         Panel panel;
 
         panel = new Panel();
@@ -141,26 +210,25 @@ public class GUI implements ActionListener {
     }
 
     public void proceedToAuction() {
-        auctionFrame.setVisible(false);
-        auctionFrame = null;
-        auctionFrame = auctionWindow();
+        mainAuctionWindow.setVisible(false);
+        mainAuctionWindow = null;
+        mainAuctionWindow = auctionWindow();
     }
 
     public void sendMessage(String message) {
+        String oldMessage = msg.getText();
         msg.setText(message);
         try {
             Thread.sleep(2000);
         } catch (Exception e) {
         }
-        msg.setText(null);
+        msg.setText(oldMessage);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginBtn) {
-            client.login(username.getText(), email.getText());
-        } else if (e.getSource() == regisBtn) {
-            client.addUser(username.getText(), email.getText());
+        if (e.getSource() == createBtn) {
+            createNewAuctionDialog();
         }
     }
 }
