@@ -10,7 +10,6 @@ public class GUI implements ActionListener {
     private final int AUCT_WIDTH = 600;
     private final int AUCT_HEIGHT = 600;
 
-    private Button createBtn;
     private Label msg;
     private Frame mainAuctionWindow;
 
@@ -90,7 +89,7 @@ public class GUI implements ActionListener {
         return panel;
     }
 
-    public Frame loginWindow() {
+    private Frame loginWindow() {
         Frame frame;
         Panel panel;
 
@@ -102,7 +101,7 @@ public class GUI implements ActionListener {
         return frame;
     }
 
-    private void createNewAuctionDialog() {
+    public void createNewAuctionDialog() {
         final Button ok;
         final TextField name, reservePrice, startingPrice;
         final Dialog newAuctionDialog;
@@ -120,10 +119,14 @@ public class GUI implements ActionListener {
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ok.getParent().setVisible(false);
-                client.addItem(name.getText(),
-                            Integer.parseInt(reservePrice.getText()),
-                            Integer.parseInt(startingPrice.getText()));
+                try {
+                    client.addItem(name.getText(),
+                                Integer.parseInt(startingPrice.getText()),
+                                Integer.parseInt(reservePrice.getText()));
+                    ok.getParent().setVisible(false);
+                } catch (Exception e) {
+                    sendMessage("Need integers");
+                }
             }
         });
 
@@ -165,11 +168,17 @@ public class GUI implements ActionListener {
 
     private Panel detailsPanel() {
         Panel panel;
+        Button createBtn;
 
         panel = new Panel();
 
         createBtn = new Button("Create");
-        createBtn.addActionListener(this);
+        createBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                createNewAuctionDialog();
+            }
+        });
 
         panel.add(createBtn);
 
@@ -227,8 +236,5 @@ public class GUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == createBtn) {
-            createNewAuctionDialog();
-        }
     }
 }

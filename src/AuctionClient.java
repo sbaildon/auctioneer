@@ -54,7 +54,7 @@ public class AuctionClient {
                 gui.sendMessage("Failed to create auction");
             }
         } catch (Exception e) {
-            gui.sendMessage("Failed to create auction (serious)");
+            gui.sendMessage("(serious) Failed to create auction (serious)");
         }
     }
 
