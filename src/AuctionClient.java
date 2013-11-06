@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.rmi.Naming;
 import java.util.ArrayList;
 
@@ -71,6 +72,63 @@ public class AuctionClient {
         } catch (Exception e) {
             gui.sendMessage("Failed to login (serious)");
         }
+    }
+
+    /* Boolean: true for items user has won, false
+     * for all auctions available
+     */
+    public void fillItems(List list, boolean won) {
+        ArrayList<Item> auctions;
+        try {
+            if (won) {
+                auctions = a.getWonAuctions(currentUser);
+            } else {
+                auctions = a.getAvailableAuctions();
+            }
+        } catch (Exception e) {
+            gui.sendMessage("Failed to get auctions");
+            return;
+        }
+
+        int i;
+        for (i = 0; i < auctions.size(); i++) {
+            list.add(auctions.get(i).name + " (" + auctions.get(i).currentPrice + ") [" + auctions.get(i).ID + "]");
+        }
+    }
+
+    public void bid(int id, int amount) {
+        int result;
+        try {
+            result = a.bid(id, amount);
+        } catch (Exception e) {
+            return;
+        }
+
+        if (result == 0) {
+            gui.sendMessage("Bid successful");
+        } else {
+            gui.sendMessage("Failed");
+        }
+    }
+
+    public void closeAuction(int id) {
+        int response;
+        try {
+            response = a.closeAuction(id, currentUser);
+            switch (response) {
+                case 0: gui.sendMessage("Item is not your own/doesn't exist");
+                        break;
+                case 1: gui.sendMessage("Item closed, but didn't meet reserve");
+                        break;
+                case 2: gui.sendMessage("Item closed, someone won!");
+                        break;
+                default:gui.sendMessage("What?");
+                        break;
+            }
+        } catch (Exception e) {
+            gui.sendMessage("Couldn't close auction (serious)");
+        }
+
     }
 
     

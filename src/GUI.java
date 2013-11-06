@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,7 +102,7 @@ public class GUI implements ActionListener {
         return frame;
     }
 
-    public void createNewAuctionDialog() {
+    private void createNewAuctionDialog() {
         final Button ok;
         final TextField name, reservePrice, startingPrice;
         final Dialog newAuctionDialog;
@@ -151,6 +152,82 @@ public class GUI implements ActionListener {
         newAuctionDialog.setVisible(true);
     }
 
+    private void createBidDialog() {
+        final Button ok;
+        final TextField amount, itemId;
+        final Dialog bidDialog;
+
+        amount = new TextField(6);
+        amount.setText("Amount");
+
+        itemId = new TextField(6);
+        itemId.setText("Item ID");
+
+        ok = new Button("OK");
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                client.bid(Integer.parseInt(itemId.getText()), Integer.parseInt(amount.getText()));
+                ok.getParent().setVisible(false);
+            }
+        });
+
+        bidDialog = new Dialog(mainAuctionWindow, "Bid", true);
+        bidDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                bidDialog.setVisible(false);
+            }
+        });
+
+        bidDialog.setSize(new Dimension(170, 100));
+        bidDialog.setLayout(new FlowLayout());
+        bidDialog.setLocationRelativeTo(null);
+
+        bidDialog.add(amount);
+        bidDialog.add(itemId);
+        bidDialog.add(ok);
+
+        bidDialog.setVisible(true);
+    }
+
+    private void createCloseAuctionDialog() {
+        final Button ok;
+        final TextField id;
+        final Dialog closeAuctionDialog;
+
+        id = new TextField(15);
+        id.setText("ID");
+
+        ok = new Button("OK");
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                client.closeAuction(Integer.parseInt(id.getText()));
+                ok.getParent().setVisible(false);
+
+            }
+        });
+
+        closeAuctionDialog = new Dialog(mainAuctionWindow, "Close Auction", true);
+
+        closeAuctionDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent we) {
+                closeAuctionDialog.setVisible(false);
+            }
+        });
+
+        closeAuctionDialog.setSize(new Dimension(170, 100));
+        closeAuctionDialog.setLayout(new FlowLayout());
+        closeAuctionDialog.setLocationRelativeTo(null);
+
+        closeAuctionDialog.add(id);
+        closeAuctionDialog.add(ok);
+
+       closeAuctionDialog.setVisible(true);
+    }
+
     private Panel auctionPanel(int width, int height) {
         Panel panel, auctions;
 
@@ -159,8 +236,8 @@ public class GUI implements ActionListener {
 
         auctions = new Panel();
 
-        panel.add(auctions, BorderLayout.WEST);
-        panel.add(detailsPanel(), BorderLayout.CENTER);
+        panel.add(auctionListPanel(), BorderLayout.CENTER);
+        panel.add(detailsPanel(), BorderLayout.EAST);
         panel.add(statusPanel(), BorderLayout.SOUTH);
 
         return panel;
@@ -168,7 +245,7 @@ public class GUI implements ActionListener {
 
     private Panel detailsPanel() {
         Panel panel;
-        Button createBtn;
+        Button createBtn, closeBtn, bidBtn;
 
         panel = new Panel();
 
@@ -180,15 +257,43 @@ public class GUI implements ActionListener {
             }
         });
 
+        bidBtn = new Button("Bid");
+        bidBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                createBidDialog();
+            }
+        });
+
+        closeBtn = new Button("Close");
+        closeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                createCloseAuctionDialog();
+            }
+        });
+
         panel.add(createBtn);
+        panel.add(bidBtn);
+        panel.add(closeBtn);
 
         return panel;
     }
 
     private Panel auctionListPanel() {
         Panel panel;
+        List available, won;
+
+        available = new List();
+        client.fillItems(available, false);
+
+        won = new List();
+        //client.fillItems(won, false);
 
         panel = new Panel();
+
+        panel.add(available);
+        panel.add(won);
 
         return panel;
     }

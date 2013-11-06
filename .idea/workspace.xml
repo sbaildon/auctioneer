@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/GUI.java" line="37" />
-    <bookmark url="file://$PROJECT_DIR$/src/GUI.java" line="16" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/src/GUI.java" line="38" />
+    <bookmark url="file://$PROJECT_DIR$/src/GUI.java" line="14" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" name="Default" comment="" />
     <ignored path="Auctioneer.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/AuctionClient.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382799652961" ignored="false" />
-    <file path="/GUI.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382799737062" ignored="false" />
+    <file path="/AuctionClient.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383747819098" ignored="false" />
+    <file path="/GUI.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383757576064" ignored="false" />
     <file path="$PROJECT_DIR$/../Auctioneer-Server/src/Auction.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382796279559" ignored="false" />
-    <file path="/Auction.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382796279133" ignored="false" />
+    <file path="/Auction.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383746686625" ignored="false" />
     <file path="$PROJECT_DIR$/../Auctioneer-Server/src/Auctioneer.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382798225270" ignored="false" />
     <file path="$PROJECT_DIR$/../Auctioneer-Server/src/Item.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382566517375" ignored="false" />
-    <file path="/Item.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382565000026" ignored="false" />
-    <file path="/Auctioneer.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382797866492" ignored="false" />
-    <file path="/fragment.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1382565132332" ignored="false" />
+    <file path="/Item.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383501201776" ignored="false" />
+    <file path="/Auctioneer.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383756949964" ignored="false" />
+    <file path="/fragment.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383240752747" ignored="false" />
+    <file path="$PROJECT_DIR$/../Auctioneer Server/src/Auctioneer.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383756958719" ignored="false" />
+    <file path="$PROJECT_DIR$/../Auctioneer Server/src/Auction.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383746686625" ignored="false" />
+    <file path="$PROJECT_DIR$/../Auctioneer Server/src/Item.java" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383501201776" ignored="false" />
+    <file path="/a.dummy" changelist="2c538e00-ffe1-4a81-8ef4-e61422d4cf55" time="1383243802305" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +89,7 @@
       <file leaf-file-name="Auction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Auction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="18" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+            <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -103,7 +107,7 @@
       <file leaf-file-name="Item.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="13" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0">
+            <state line="27" column="25" selection-start="735" selection-end="735" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,7 +116,7 @@
       <file leaf-file-name="AuctionClient.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AuctionClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="13" selection-start="726" selection-end="726" vertical-scroll-proportion="0.17400882">
+            <state line="72" column="40" selection-start="2134" selection-end="2134" vertical-scroll-proportion="0.26895306">
               <folding />
             </state>
           </provider>
@@ -121,8 +125,30 @@
       <file leaf-file-name="GUI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="0" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="290" column="33" selection-start="8712" selection-end="8712" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#windowFrame#0;class#GUI#0" expanded="false" />
+                <element signature="method#loginPanel#0;class#GUI#0" expanded="false" />
+                <element signature="method#loginWindow#0;class#GUI#0" expanded="false" />
+                <element signature="method#createNewAuctionDialog#0;class#GUI#0" expanded="false" />
+                <element signature="e#5117#5402#0" expanded="true" />
+                <element signature="e#5391#5392#0" expanded="true" />
+                <element signature="method#createCloseAuctionDialog#0;class#GUI#0" expanded="false" />
+                <element signature="e#6218#6473#0" expanded="true" />
+                <element signature="e#6462#6463#0" expanded="true" />
+                <element signature="method#auctionPanel#0;class#GUI#0" expanded="false" />
+                <element signature="method#detailsPanel#0;class#GUI#0" expanded="false" />
+                <element signature="e#7688#7865#0" expanded="true" />
+                <element signature="e#7854#7855#0" expanded="true" />
+                <element signature="e#7938#8108#0" expanded="true" />
+                <element signature="e#8097#8098#0" expanded="true" />
+                <element signature="e#8187#8366#0" expanded="true" />
+                <element signature="e#8355#8356#0" expanded="true" />
+                <element signature="method#statusPanel#0;class#GUI#0" expanded="false" />
+                <element signature="method#auctionWindow#0;class#GUI#0" expanded="false" />
+                <element signature="method#proceedToAuction#0;class#GUI#0" expanded="false" />
+                <element signature="method#sendMessage#0;class#GUI#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -146,10 +172,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="12" />
-    <option name="y" value="22" />
-    <option name="width" value="960" />
-    <option name="height" value="874" />
+    <option name="x" value="45" />
+    <option name="y" value="43" />
+    <option name="width" value="1115" />
+    <option name="height" value="801" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -203,16 +229,16 @@
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="preferences.general" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Auctioneer-Server" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -250,19 +276,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -288,6 +301,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -369,7 +395,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="12" y="22" width="960" height="874" extended-state="0" />
+    <frame x="45" y="43" width="1115" height="801" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -380,13 +406,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891247" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32599118" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2286652" sideWeight="0.6392573" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36074272" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14537445" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -474,7 +500,29 @@
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="13" selection-start="1238" selection-end="1238" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="method#windowFrame#0;class#GUI#0" expanded="false" />
+            <element signature="method#loginPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#loginWindow#0;class#GUI#0" expanded="false" />
+            <element signature="method#createNewAuctionDialog#0;class#GUI#0" expanded="false" />
+            <element signature="e#5117#5402#0" expanded="true" />
+            <element signature="e#5391#5392#0" expanded="true" />
+            <element signature="method#createCloseAuctionDialog#0;class#GUI#0" expanded="false" />
+            <element signature="e#6218#6473#0" expanded="true" />
+            <element signature="e#6462#6463#0" expanded="true" />
+            <element signature="method#auctionPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#detailsPanel#0;class#GUI#0" expanded="false" />
+            <element signature="e#7688#7865#0" expanded="true" />
+            <element signature="e#7854#7855#0" expanded="true" />
+            <element signature="e#7938#8108#0" expanded="true" />
+            <element signature="e#8097#8098#0" expanded="true" />
+            <element signature="e#8187#8366#0" expanded="true" />
+            <element signature="e#8355#8356#0" expanded="true" />
+            <element signature="method#statusPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#auctionWindow#0;class#GUI#0" expanded="false" />
+            <element signature="method#proceedToAuction#0;class#GUI#0" expanded="false" />
+            <element signature="method#sendMessage#0;class#GUI#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -502,7 +550,29 @@
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="21" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0">
-          <folding />
+          <folding>
+            <element signature="method#windowFrame#0;class#GUI#0" expanded="false" />
+            <element signature="method#loginPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#loginWindow#0;class#GUI#0" expanded="false" />
+            <element signature="method#createNewAuctionDialog#0;class#GUI#0" expanded="false" />
+            <element signature="e#5117#5402#0" expanded="true" />
+            <element signature="e#5391#5392#0" expanded="true" />
+            <element signature="method#createCloseAuctionDialog#0;class#GUI#0" expanded="false" />
+            <element signature="e#6218#6473#0" expanded="true" />
+            <element signature="e#6462#6463#0" expanded="true" />
+            <element signature="method#auctionPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#detailsPanel#0;class#GUI#0" expanded="false" />
+            <element signature="e#7688#7865#0" expanded="true" />
+            <element signature="e#7854#7855#0" expanded="true" />
+            <element signature="e#7938#8108#0" expanded="true" />
+            <element signature="e#8097#8098#0" expanded="true" />
+            <element signature="e#8187#8366#0" expanded="true" />
+            <element signature="e#8355#8356#0" expanded="true" />
+            <element signature="method#statusPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#auctionWindow#0;class#GUI#0" expanded="false" />
+            <element signature="method#proceedToAuction#0;class#GUI#0" expanded="false" />
+            <element signature="method#sendMessage#0;class#GUI#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -548,13 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Auction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="18" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="17" selection-start="17" selection-end="17" vertical-scroll-proportion="0.0">
@@ -564,21 +627,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="13" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0">
+        <state line="27" column="25" selection-start="735" selection-end="735" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Auction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="0" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="290" column="33" selection-start="8712" selection-end="8712" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#windowFrame#0;class#GUI#0" expanded="false" />
+            <element signature="method#loginPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#loginWindow#0;class#GUI#0" expanded="false" />
+            <element signature="method#createNewAuctionDialog#0;class#GUI#0" expanded="false" />
+            <element signature="e#5117#5402#0" expanded="true" />
+            <element signature="e#5391#5392#0" expanded="true" />
+            <element signature="method#createCloseAuctionDialog#0;class#GUI#0" expanded="false" />
+            <element signature="e#6218#6473#0" expanded="true" />
+            <element signature="e#6462#6463#0" expanded="true" />
+            <element signature="method#auctionPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#detailsPanel#0;class#GUI#0" expanded="false" />
+            <element signature="e#7688#7865#0" expanded="true" />
+            <element signature="e#7854#7855#0" expanded="true" />
+            <element signature="e#7938#8108#0" expanded="true" />
+            <element signature="e#8097#8098#0" expanded="true" />
+            <element signature="e#8187#8366#0" expanded="true" />
+            <element signature="e#8355#8356#0" expanded="true" />
+            <element signature="method#statusPanel#0;class#GUI#0" expanded="false" />
+            <element signature="method#auctionWindow#0;class#GUI#0" expanded="false" />
+            <element signature="method#proceedToAuction#0;class#GUI#0" expanded="false" />
+            <element signature="method#sendMessage#0;class#GUI#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AuctionClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="13" selection-start="726" selection-end="726" vertical-scroll-proportion="0.17400882">
+        <state line="72" column="40" selection-start="2134" selection-end="2134" vertical-scroll-proportion="0.26895306">
           <folding />
         </state>
       </provider>
