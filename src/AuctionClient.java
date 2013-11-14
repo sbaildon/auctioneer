@@ -71,45 +71,26 @@ public class AuctionClient {
         }
     }
 
-    /* Boolean: true for items user has won, false
-     * for all auctions available
-     */
-    public void fillItems(List list, boolean sold) {
-        ArrayList<Item> auctions;
-        try {
-            if (sold) {
-                System.out.print(currentUser.email);
-                auctions = a.getSoldAuctions(currentUser);
-            } else {
-                auctions = a.getAvailableAuctions();
-            }
-        } catch (Exception e) {
-            gui.sendMessage("Failed to get auctions");
-            return;
-        }
-
-        if (auctions.size() == 0) {
-            return;
-        }
-
-        int i;
-        for (i = 0; i < auctions.size(); i++) {
-            //list.add(auctions.get(i).name + " (" + auctions.get(i).currentPrice + ") [" + auctions.get(i).ID + "]");
-        }
-    }
-
     public void bid(int id, int amount) {
         int result;
         try {
             result = a.bid(id, amount, currentUser);
         } catch (Exception e) {
+            gui.sendMessage("Bid failed (serious)");
             return;
         }
 
-        if (result == 0) {
-            gui.sendMessage("Bid successful");
-        } else {
-            gui.sendMessage("Failed");
+        switch (result) {
+            case 3: gui.sendMessage("No auction exists");
+                    break;
+            case 2: gui.sendMessage("You can't bid on your own auctions!");
+                    break;
+            case 1: gui.sendMessage("Your bid was too small");
+                    break;
+            case 0: gui.sendMessage("Bid successful");
+                    break;
+            default:gui.sendMessage("What?");
+                    break;
         }
     }
 
@@ -118,11 +99,11 @@ public class AuctionClient {
         try {
             response = a.closeAuction(id, currentUser);
             switch (response) {
-                case 0: gui.sendMessage("Item is not your own/doesn't exist");
+                case 2: gui.sendMessage("Not your auction");
                         break;
                 case 1: gui.sendMessage("Item closed, but didn't meet reserve");
                         break;
-                case 2: gui.sendMessage("Item closed, someone won!");
+                case 0: gui.sendMessage("Item closed, someone won!");
                         break;
                 default:gui.sendMessage("What?");
                         break;
