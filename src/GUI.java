@@ -282,18 +282,18 @@ public class GUI implements ActionListener {
 
     private Panel auctionListPanel() {
         Panel panel;
-        List available, won;
+        List availableList, wonList;
 
-        available = new List();
-        client.fillItems(available, false);
+        availableList = new List();
+        //client.fillItems(availableList, false);
 
-        won = new List();
-        //client.fillItems(won, false);
+        wonList = new List();
+        //client.fillItems(wonList, true);
 
         panel = new Panel();
 
-        panel.add(available);
-        panel.add(won);
+        panel.add(availableList);
+        panel.add(wonList);
 
         return panel;
     }

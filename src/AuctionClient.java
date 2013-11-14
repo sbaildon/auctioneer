@@ -49,11 +49,8 @@ public class AuctionClient {
         Item item;
         item = new Item(currentUser, name, startPrice, reservePrice);
         try {
-            if(a.addItem(item)) {
-                gui.sendMessage("Auction created");
-            } else {
-                gui.sendMessage("Failed to create auction");
-            }
+            a.addItem(item);
+            gui.sendMessage("Auction created");
         } catch (Exception e) {
             gui.sendMessage("(serious) Failed to create auction (serious)");
         }
@@ -77,11 +74,12 @@ public class AuctionClient {
     /* Boolean: true for items user has won, false
      * for all auctions available
      */
-    public void fillItems(List list, boolean won) {
+    public void fillItems(List list, boolean sold) {
         ArrayList<Item> auctions;
         try {
-            if (won) {
-                auctions = a.getWonAuctions(currentUser);
+            if (sold) {
+                System.out.print(currentUser.email);
+                auctions = a.getSoldAuctions(currentUser);
             } else {
                 auctions = a.getAvailableAuctions();
             }
@@ -90,16 +88,20 @@ public class AuctionClient {
             return;
         }
 
+        if (auctions.size() == 0) {
+            return;
+        }
+
         int i;
         for (i = 0; i < auctions.size(); i++) {
-            list.add(auctions.get(i).name + " (" + auctions.get(i).currentPrice + ") [" + auctions.get(i).ID + "]");
+            //list.add(auctions.get(i).name + " (" + auctions.get(i).currentPrice + ") [" + auctions.get(i).ID + "]");
         }
     }
 
     public void bid(int id, int amount) {
         int result;
         try {
-            result = a.bid(id, amount);
+            result = a.bid(id, amount, currentUser);
         } catch (Exception e) {
             return;
         }
