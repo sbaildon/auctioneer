@@ -1,6 +1,6 @@
-import java.awt.*;
+import java.awt.List;
+import java.util.HashMap;
 import java.rmi.Naming;
-import java.util.ArrayList;
 
 public class AuctionClient {
     public static final AuctionClient client = new AuctionClient();
@@ -40,6 +40,21 @@ public class AuctionClient {
         }
     }
 
+    public void login(String name, String email) {
+        User user;
+        user = new User(name, email);
+        try {
+            if (a.login(user)) {
+                currentUser = user;
+                gui.proceedToAuction();
+            } else {
+                gui.sendMessage("Account doesn't exist");
+            }
+        } catch (Exception e) {
+            gui.sendMessage("Failed to login (serious)");
+        }
+    }
+
     public void addItem(String name, int startPrice, int reservePrice) {
         if (startPrice > reservePrice) {
             gui.sendMessage("Prices are wrong" );
@@ -53,21 +68,6 @@ public class AuctionClient {
             gui.sendMessage("Auction created");
         } catch (Exception e) {
             gui.sendMessage("(serious) Failed to create auction (serious)");
-        }
-    }
-
-    public void login(String name, String email) {
-        User user;
-        user = new User(name, email);
-        try {
-            if (a.login(user)) {
-                gui.proceedToAuction();
-                currentUser = new User(name, email);
-            } else {
-                gui.sendMessage("Account doesn't exist");
-            }
-        } catch (Exception e) {
-            gui.sendMessage("Failed to login (serious)");
         }
     }
 
@@ -92,6 +92,30 @@ public class AuctionClient {
             default:gui.sendMessage("What?");
                     break;
         }
+    }
+
+    /*
+     * Set the 'won' boolean to true to check for only auctions
+     * the current user has won
+     */
+    public void populateList(List list, boolean won) {
+        HashMap<Integer, Item> items = new HashMap<Integer, Item>();
+
+        if (won) {
+            try {
+                items = a.getSoldAuctions(currentUser);
+            } catch (Exception e) {System.out.println("Failed here");}
+        } else {
+            try {
+                items = a.getAvailableAuctions();
+            } catch (Exception e) {System.out.println("Failed");}
+        }
+
+        int i;
+        for(i = 1; i <= items.size(); i++) {
+            list.add(items.get(i).getName());
+        }
+
     }
 
     public void closeAuction(int id) {

@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -285,10 +284,10 @@ public class GUI implements ActionListener {
         List availableList, wonList;
 
         availableList = new List();
-        //client.fillItems(availableList, false);
+        client.populateList(availableList, false);
 
         wonList = new List();
-        //client.fillItems(wonList, true);
+        client.populateList(wonList, true);
 
         panel = new Panel();
 
@@ -333,7 +332,7 @@ public class GUI implements ActionListener {
         String oldMessage = msg.getText();
         msg.setText(message);
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (Exception e) {
         }
         msg.setText(oldMessage);
