@@ -1,6 +1,7 @@
 import java.awt.List;
 import java.util.HashMap;
 import java.rmi.Naming;
+import java.util.Map;
 
 public class AuctionClient {
     public static final AuctionClient client = new AuctionClient();
@@ -13,7 +14,6 @@ public class AuctionClient {
             a = (Auction) Naming.lookup("rmi://localhost:2020/AuctioneerService");
         } catch (Exception e) {
             System.out.println("Failed to find RMI");
-            e.printStackTrace();
             return;
         }
         gui = new GUI();
@@ -111,9 +111,8 @@ public class AuctionClient {
             } catch (Exception e) {System.out.println("Failed");}
         }
 
-        int i;
-        for(i = 1; i <= items.size(); i++) {
-            list.add(items.get(i).getName());
+        for (Map.Entry<Integer, Item> e : items.entrySet()) {
+            list.add(e.getValue().getName());
         }
 
     }
@@ -138,6 +137,6 @@ public class AuctionClient {
 
     }
 
-    
+
 
 }

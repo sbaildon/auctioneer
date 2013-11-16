@@ -110,10 +110,10 @@ public class GUI implements ActionListener {
         name.setText("Item name");
 
         reservePrice = new TextField(6);
-        reservePrice.setText("Reserve");
+        reservePrice.setText("20");
 
         startingPrice = new TextField(6);
-        startingPrice.setText("Starting");
+        startingPrice.setText("2");
 
         ok = new Button("Ok");
         ok.addActionListener(new ActionListener() {
@@ -232,8 +232,6 @@ public class GUI implements ActionListener {
 
         panel = new Panel();
         panel.setLayout(new BorderLayout());
-
-        auctions = new Panel();
 
         panel.add(auctionListPanel(), BorderLayout.CENTER);
         panel.add(detailsPanel(), BorderLayout.EAST);
