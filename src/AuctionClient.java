@@ -112,7 +112,7 @@ public class AuctionClient {
         }
 
         for (Map.Entry<Integer, Item> e : items.entrySet()) {
-            list.add(e.getValue().getName());
+            list.add(e.getValue().getName() + " (£" + e.getValue().getPrice() + ") [" + e.getKey() + "]");
         }
 
     }
