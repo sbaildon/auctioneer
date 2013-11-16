@@ -284,7 +284,6 @@ public class GUI {
         List availableList, wonList;
 
         availableList = new List();
-        availableList.setPreferredSize(new Dimension(10, 10));
         client.populateList(availableList, false);
 
         wonList = new List();
@@ -303,10 +302,10 @@ public class GUI {
         Panel panel;
 
         msg.setText("Ready");
-        msg.setBounds(0, 0, AUCT_WIDTH, AUCT_HEIGHT);
-        msg.setAlignment(Label.LEFT);
+        msg.setAlignment(Label.CENTER);
 
         panel = new Panel();
+        panel.setLayout(new GridLayout());
         panel.add(msg);
 
         return panel;
