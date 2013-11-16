@@ -4,20 +4,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class GUI implements ActionListener {
+public class GUI {
     private final int LOGIN_WIDTH = 480;
     private final int LOGIN_HEIGHT = 300;
-    private final int AUCT_WIDTH = 600;
-    private final int AUCT_HEIGHT = 600;
+    private final int AUCT_WIDTH = 250;
+    private final int AUCT_HEIGHT = 350;
 
     private Label msg;
-    private Frame mainAuctionWindow;
+    private Frame loginWindow;
+    private Frame auctionWindow;
 
     private AuctionClient client;
 
     public GUI() {
         client = client.getInstance();
-        mainAuctionWindow = loginWindow();
+        loginWindow = setupLogin();
     }
 
     private Frame windowFrame(String title, int width, int height){
@@ -89,7 +90,7 @@ public class GUI implements ActionListener {
         return panel;
     }
 
-    private Frame loginWindow() {
+    private Frame setupLogin() {
         Frame frame;
         Panel panel;
 
@@ -130,7 +131,7 @@ public class GUI implements ActionListener {
             }
         });
 
-        newAuctionDialog = new Dialog(mainAuctionWindow, "New Auction", true);
+        newAuctionDialog = new Dialog(auctionWindow, "New Auction", true);
 
         newAuctionDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -171,7 +172,7 @@ public class GUI implements ActionListener {
             }
         });
 
-        bidDialog = new Dialog(mainAuctionWindow, "Bid", true);
+        bidDialog = new Dialog(auctionWindow, "Bid", true);
         bidDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
@@ -208,7 +209,7 @@ public class GUI implements ActionListener {
             }
         });
 
-        closeAuctionDialog = new Dialog(mainAuctionWindow, "Close Auction", true);
+        closeAuctionDialog = new Dialog(auctionWindow, "Close Auction", true);
 
         closeAuctionDialog.addWindowListener(new WindowAdapter() {
             @Override
@@ -228,19 +229,19 @@ public class GUI implements ActionListener {
     }
 
     private Panel auctionPanel(int width, int height) {
-        Panel panel, auctions;
+        Panel panel;
 
         panel = new Panel();
         panel.setLayout(new BorderLayout());
 
         panel.add(auctionListPanel(), BorderLayout.CENTER);
-        panel.add(detailsPanel(), BorderLayout.EAST);
+        panel.add(buttonsPanel(), BorderLayout.EAST);
         panel.add(statusPanel(), BorderLayout.SOUTH);
 
         return panel;
     }
 
-    private Panel detailsPanel() {
+    private Panel buttonsPanel() {
         Panel panel;
         Button createBtn, closeBtn, bidBtn;
 
@@ -299,6 +300,7 @@ public class GUI implements ActionListener {
         Panel panel;
 
         msg.setText("Ready");
+        msg.setBounds(0, 0, AUCT_WIDTH, AUCT_HEIGHT);
         msg.setAlignment(Label.LEFT);
 
         panel = new Panel();
@@ -307,7 +309,7 @@ public class GUI implements ActionListener {
         return panel;
     }
 
-    private Frame auctionWindow() {
+    private Frame setupAuction() {
         Frame frame;
         Panel panel;
 
@@ -321,9 +323,8 @@ public class GUI implements ActionListener {
     }
 
     public void proceedToAuction() {
-        mainAuctionWindow.setVisible(false);
-        mainAuctionWindow = null;
-        mainAuctionWindow = auctionWindow();
+        loginWindow.setVisible(false);
+        auctionWindow = setupAuction();
     }
 
     public void sendMessage(String message) {
@@ -334,9 +335,5 @@ public class GUI implements ActionListener {
         } catch (Exception e) {
         }
         msg.setText(oldMessage);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 }
