@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,7 +8,7 @@ import java.awt.event.WindowEvent;
 public class GUI {
     private final int LOGIN_WIDTH = 480;
     private final int LOGIN_HEIGHT = 300;
-    private final int AUCT_WIDTH = 250;
+    private final int AUCT_WIDTH = 450;
     private final int AUCT_HEIGHT = 350;
 
     private Label msg;
@@ -235,7 +236,7 @@ public class GUI {
         panel.setLayout(new BorderLayout());
 
         panel.add(auctionListPanel(), BorderLayout.CENTER);
-        panel.add(buttonsPanel(), BorderLayout.EAST);
+        panel.add(buttonsPanel(), BorderLayout.NORTH);
         panel.add(statusPanel(), BorderLayout.SOUTH);
 
         return panel;
@@ -283,12 +284,14 @@ public class GUI {
         List availableList, wonList;
 
         availableList = new List();
+        availableList.setPreferredSize(new Dimension(10, 10));
         client.populateList(availableList, false);
 
         wonList = new List();
         client.populateList(wonList, true);
 
         panel = new Panel();
+        panel.setLayout(new GridLayout());
 
         panel.add(availableList);
         panel.add(wonList);
