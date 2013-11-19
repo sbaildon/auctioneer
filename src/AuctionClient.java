@@ -1,7 +1,11 @@
 import java.awt.List;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.rmi.Naming;
 import java.util.Map;
+import javax.crypto.*;
+import javax.crypto.spec.*;
 
 public class AuctionClient {
     public static final AuctionClient client = new AuctionClient();
@@ -126,7 +130,7 @@ public class AuctionClient {
                         break;
                 case 1: gui.sendMessage("Item closed, but didn't meet reserve");
                         break;
-                case 0: gui.sendMessage("Item closed, someone won!");
+                case 0: gui.sendMessage("Item closed, " + a.getAuctionWinner(id) + " won!");
                         break;
                 default:gui.sendMessage("What?");
                         break;
@@ -136,7 +140,5 @@ public class AuctionClient {
         }
 
     }
-
-
 
 }
