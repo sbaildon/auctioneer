@@ -123,8 +123,9 @@ public class GUI {
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     client.addItem(name.getText(),
-                                Integer.parseInt(startingPrice.getText()),
-                                Integer.parseInt(reservePrice.getText()));
+                                Double.parseDouble(startingPrice.getText()),
+                                Double.parseDouble(reservePrice.getText()));
+                    auctionWindow = setupAuction();
                     ok.getParent().setVisible(false);
                 } catch (Exception e) {
                     sendMessage("Need integers");
@@ -168,7 +169,8 @@ public class GUI {
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                client.bid(Integer.parseInt(itemId.getText()), Integer.parseInt(amount.getText()));
+                client.bid(Integer.parseInt(itemId.getText()), Double.parseDouble(amount.getText()));
+                auctionWindow = setupAuction();
                 ok.getParent().setVisible(false);
             }
         });
@@ -205,6 +207,7 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 client.closeAuction(Integer.parseInt(id.getText()));
+                auctionWindow = setupAuction();
                 ok.getParent().setVisible(false);
 
             }

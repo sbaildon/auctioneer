@@ -59,7 +59,7 @@ public class AuctionClient {
         }
     }
 
-    public void addItem(String name, int startPrice, int reservePrice) {
+    public void addItem(String name, double startPrice, double reservePrice) {
         if (startPrice > reservePrice) {
             gui.sendMessage("Prices are wrong" );
             return;
@@ -75,7 +75,7 @@ public class AuctionClient {
         }
     }
 
-    public void bid(int id, int amount) {
+    public void bid(int id, double amount) {
         int result;
         try {
             result = a.bid(id, amount, currentUser);
@@ -126,6 +126,8 @@ public class AuctionClient {
         try {
             response = a.closeAuction(id, currentUser);
             switch (response) {
+                case 3: gui.sendMessage("That auction doesn't exist");
+                        break;
                 case 2: gui.sendMessage("Not your auction");
                         break;
                 case 1: gui.sendMessage("Item closed, but didn't meet reserve");
