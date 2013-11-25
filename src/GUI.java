@@ -112,10 +112,10 @@ public class GUI {
         name.setText("Item name");
 
         reservePrice = new TextField(6);
-        reservePrice.setText("20");
+        reservePrice.setText("Reserve");
 
         startingPrice = new TextField(6);
-        startingPrice.setText("2");
+        startingPrice.setText("Starting");
 
         ok = new Button("Ok");
         ok.addActionListener(new ActionListener() {
@@ -169,9 +169,13 @@ public class GUI {
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                client.bid(Integer.parseInt(itemId.getText()), Double.parseDouble(amount.getText()));
-                auctionWindow = setupAuction();
-                ok.getParent().setVisible(false);
+                try {
+                    client.bid(Integer.parseInt(itemId.getText()), Double.parseDouble(amount.getText()));
+                    auctionWindow = setupAuction();
+                    ok.getParent().setVisible(false);
+                } catch (Exception e) {
+                    sendMessage("need integers");
+                }
             }
         });
 
