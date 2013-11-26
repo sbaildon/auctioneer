@@ -42,26 +42,27 @@ public class GUI {
         Panel panel;
         Label intro;
         Button loginBtn, regisBtn;
-        final TextField username, email;
+        final TextField password, email;
 
         intro = new Label("Hello");
         intro.setFont(new Font("Sans Serif", Font.PLAIN, 38));
         intro.setBounds(((width / 2) - 52), 30, 105, 400);
 
-        username = new TextField(15);
-        username.setBounds(((width / 2) - 65), ((height / 2) - 40), 130, 25);
-        username.setText("username");
-
         email = new TextField(15);
-        email.setBounds(((width / 2) - 65), (height / 2), 130, 25);
+        email.setBounds(((width / 2) - 65), ((height / 2) - 40), 130, 25);
         email.setText("email");
+
+        password = new TextField(15);
+        password.setBounds(((width / 2) - 65), (height / 2), 130, 25);
+        password.setEchoChar('*');
+        password.setText("password");
 
         loginBtn = new Button("Login");
         loginBtn.setBounds(((width / 2) - 77), (height - (height / 3)), 75, 25);
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                client.login(username.getText(), email.getText());
+                client.login(email.getText(), password.getText());
             }
         });
 
@@ -70,7 +71,7 @@ public class GUI {
         regisBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                client.newUser(username.getText(), email.getText());
+                client.newUser(email.getText(), password.getText());
             }
         });
 
@@ -83,7 +84,7 @@ public class GUI {
 
         panel.add(loginBtn);
         panel.add(regisBtn);
-        panel.add(username);
+        panel.add(password);
         panel.add(email);
         panel.add(intro);
         panel.add(msg);

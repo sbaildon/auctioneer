@@ -30,9 +30,9 @@ public class AuctionClient {
         return client;
     }
 
-    public void newUser(String name, String email) {
+    public void newUser(String email, String password) {
         User user;
-        user = new User(name, email);
+        user = new User(email, password);
         try {
             if (a.addUser(user)) {
                 gui.sendMessage("Account created");
@@ -44,9 +44,8 @@ public class AuctionClient {
         }
     }
 
-    public void login(String name, String email) {
-        User user;
-        user = new User(name, email);
+    public void login(String email, String password) {
+        User user = new User(email, password);
         try {
             if (a.login(user)) {
                 currentUser = user;
@@ -141,6 +140,46 @@ public class AuctionClient {
             gui.sendMessage("Couldn't close auction (serious)");
         }
 
+    }
+
+    private SealedObject seal(User obj) {
+        SealedObject sealed;
+        try {
+            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, getKey());
+            sealed = new SealedObject(obj, cipher);
+            return sealed;
+        } catch (Exception e) {
+            gui.sendMessage("Failed to seal user");
+        }
+
+        return null;
+    }
+
+    private SealedObject seal(Item obj) {
+        SealedObject sealed;
+        try {
+            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, getKey());
+            sealed = new SealedObject(obj, cipher);
+            return sealed;
+        } catch (Exception e) {
+            gui.sendMessage("Failed to seal item");
+        }
+        return null;
+    }
+
+    private SecretKey getKey() {
+        try {
+            FileInputStream fis = new FileInputStream("files/secret.key");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            SecretKey obj = (SecretKey) ois.readObject();
+            ois.close();
+            return obj;
+        } catch (Exception e) {
+            System.out.println("Failed reading key\n\n" + e);
+        }
+        return null;
     }
 
 }
