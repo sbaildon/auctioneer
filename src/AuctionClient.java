@@ -143,11 +143,11 @@ public class AuctionClient {
 
     }
 
-    private SealedObject seal(User obj) {
+    private SealedObject seal(User obj, SecretKey skey) {
         SealedObject sealed;
         try {
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, getKey());
+            cipher.init(Cipher.ENCRYPT_MODE, skey);
             sealed = new SealedObject(obj, cipher);
             return sealed;
         } catch (Exception e) {
@@ -157,11 +157,11 @@ public class AuctionClient {
         return null;
     }
 
-    private SealedObject seal(Item obj) {
+    private SealedObject seal(Item obj, SecretKey skey) {
         SealedObject sealed;
         try {
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, getKey());
+            cipher.init(Cipher.ENCRYPT_MODE, skey);
             sealed = new SealedObject(obj, cipher);
             return sealed;
         } catch (Exception e) {
@@ -170,9 +170,9 @@ public class AuctionClient {
         return null;
     }
 
-    private SecretKey getKey() {
+    private SecretKey getKey(String fileName) {
         try {
-            FileInputStream fis = new FileInputStream("files/secret.key");
+            FileInputStream fis = new FileInputStream("keys/" + fileName + ".key");
             ObjectInputStream ois = new ObjectInputStream(fis);
             SecretKey obj = (SecretKey) ois.readObject();
             ois.close();
