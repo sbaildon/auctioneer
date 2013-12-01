@@ -1,6 +1,5 @@
 import java.awt.List;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.rmi.Naming;
 import java.util.Map;
@@ -34,8 +33,10 @@ public class AuctionClient {
         User user;
         user = new User(email, password);
         try {
-            if (a.addUser(user)) {
+            SecretKey skey = a.addUser(user);
+            if (skey != null) {
                 gui.sendMessage("Account created");
+                writeKey(user.getEmail(), skey);
             } else {
                 gui.sendMessage("Email already in use");
             }
@@ -180,6 +181,26 @@ public class AuctionClient {
             System.out.println("Failed reading key\n\n" + e);
         }
         return null;
+    }
+
+    private boolean writeKey(String fileName, SecretKey skey) {
+        File file;
+        OutputStream stream;
+        ObjectOutputStream objStream;
+        file = new File("keys/" + fileName + ".key");
+        try {
+            stream = new FileOutputStream(file);
+            objStream = new ObjectOutputStream(stream);
+
+            objStream.writeObject(skey);
+
+            stream.close();
+            objStream.close();
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }
