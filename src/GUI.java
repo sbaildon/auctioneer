@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -126,7 +125,8 @@ public class GUI {
                     client.addItem(name.getText(),
                                 Double.parseDouble(startingPrice.getText()),
                                 Double.parseDouble(reservePrice.getText()));
-                    auctionWindow = setupAuction();
+                    //auctionWindow.setVisible(false);
+                    //auctionWindow = setupAuction();
                     ok.getParent().setVisible(false);
                 } catch (Exception e) {
                     sendMessage("Need integers");
@@ -172,7 +172,6 @@ public class GUI {
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     client.bid(Integer.parseInt(itemId.getText()), Double.parseDouble(amount.getText()));
-                    auctionWindow = setupAuction();
                     ok.getParent().setVisible(false);
                 } catch (Exception e) {
                     sendMessage("need integers");
@@ -317,6 +316,11 @@ public class GUI {
         panel.add(msg);
 
         return panel;
+    }
+
+    public void refreshGUI() {
+        auctionWindow.setVisible(false);
+        auctionWindow = setupAuction();
     }
 
     private Frame setupAuction() {
