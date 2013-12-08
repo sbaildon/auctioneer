@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,26 +41,27 @@ public class GUI {
         Panel panel;
         Label intro;
         Button loginBtn, regisBtn;
-        final TextField username, email;
+        final TextField password, email;
 
         intro = new Label("Hello");
         intro.setFont(new Font("Sans Serif", Font.PLAIN, 38));
         intro.setBounds(((width / 2) - 52), 30, 105, 400);
 
-        username = new TextField(15);
-        username.setBounds(((width / 2) - 65), ((height / 2) - 40), 130, 25);
-        username.setText("username");
-
         email = new TextField(15);
-        email.setBounds(((width / 2) - 65), (height / 2), 130, 25);
+        email.setBounds(((width / 2) - 65), ((height / 2) - 40), 130, 25);
         email.setText("email");
+
+        password = new TextField(15);
+        password.setBounds(((width / 2) - 65), (height / 2), 130, 25);
+        password.setEchoChar('*');
+        password.setText("password");
 
         loginBtn = new Button("Login");
         loginBtn.setBounds(((width / 2) - 77), (height - (height / 3)), 75, 25);
         loginBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                client.login(username.getText(), email.getText());
+                client.login(email.getText(), password.getText());
             }
         });
 
@@ -70,7 +70,7 @@ public class GUI {
         regisBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                client.newUser(username.getText(), email.getText());
+                client.newUser(email.getText(), password.getText());
             }
         });
 
@@ -83,7 +83,7 @@ public class GUI {
 
         panel.add(loginBtn);
         panel.add(regisBtn);
-        panel.add(username);
+        panel.add(password);
         panel.add(email);
         panel.add(intro);
         panel.add(msg);
@@ -112,10 +112,10 @@ public class GUI {
         name.setText("Item name");
 
         reservePrice = new TextField(6);
-        reservePrice.setText("20");
+        reservePrice.setText("Reserve");
 
         startingPrice = new TextField(6);
-        startingPrice.setText("2");
+        startingPrice.setText("Starting");
 
         ok = new Button("Ok");
         ok.addActionListener(new ActionListener() {
@@ -125,7 +125,8 @@ public class GUI {
                     client.addItem(name.getText(),
                                 Double.parseDouble(startingPrice.getText()),
                                 Double.parseDouble(reservePrice.getText()));
-                    auctionWindow = setupAuction();
+                    //auctionWindow.setVisible(false);
+                    //auctionWindow = setupAuction();
                     ok.getParent().setVisible(false);
                 } catch (Exception e) {
                     sendMessage("Need integers");
@@ -169,9 +170,12 @@ public class GUI {
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                client.bid(Integer.parseInt(itemId.getText()), Double.parseDouble(amount.getText()));
-                auctionWindow = setupAuction();
-                ok.getParent().setVisible(false);
+                try {
+                    client.bid(Integer.parseInt(itemId.getText()), Double.parseDouble(amount.getText()));
+                    ok.getParent().setVisible(false);
+                } catch (Exception e) {
+                    sendMessage("need integers");
+                }
             }
         });
 
@@ -312,6 +316,11 @@ public class GUI {
         panel.add(msg);
 
         return panel;
+    }
+
+    public void refreshGUI() {
+        auctionWindow.setVisible(false);
+        auctionWindow = setupAuction();
     }
 
     private Frame setupAuction() {
