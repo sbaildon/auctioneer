@@ -1,6 +1,5 @@
 import java.awt.List;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.rmi.Naming;
 import java.util.Map;
@@ -105,7 +104,6 @@ public class AuctionClient {
 
         return finished;
     }
-
 
     public static AuctionClient getInstance() {
         return client;
@@ -231,19 +229,20 @@ public class AuctionClient {
 
     public void bid(int id, double amount) {
         int result;
-        SealedObject sealedUser;
+        SealedObject sealedBidItem;
         SecretKey skey = getKey(currentUser.getEmail());
+        BidItem bidItem = new BidItem(id, amount, currentUser);
 
         if (skey == null) {
             gui.sendMessage("Couldn't find the correct authentication");
             return;
         } else {
-            sealedUser = seal(currentUser, skey);
+            sealedBidItem = seal(bidItem, skey);
         }
 
 
         try {
-            result = a.bid(id, amount, currentUser.getEmail(), sealedUser);
+            result = a.bid(currentUser.getEmail(), sealedBidItem);
         } catch (Exception e) {
             if (multipleRetry()) {
                 try {
@@ -363,6 +362,20 @@ public class AuctionClient {
     }
 
     private SealedObject seal(User obj, SecretKey skey) {
+        SealedObject sealed;
+        try {
+            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, skey);
+            sealed = new SealedObject(obj, cipher);
+            return sealed;
+        } catch (Exception e) {
+            gui.sendMessage("Failed to seal user");
+        }
+
+        return null;
+    }
+
+    private SealedObject seal(BidItem obj, SecretKey skey) {
         SealedObject sealed;
         try {
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
