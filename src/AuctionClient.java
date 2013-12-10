@@ -12,6 +12,7 @@ public class AuctionClient {
     private static GUI gui;
     private User currentUser;
 
+
     private final static String SERVER = "rmi://localhost:2020";
 
     public static void main(String args[]) {
@@ -41,7 +42,7 @@ public class AuctionClient {
         String[] allNodes = findAllNodes();
 
         if (allNodes.length == 0) {
-            System.out.println("No nodes available");
+            System.out.println("No nodes to list");
             return;
         }
 
@@ -82,24 +83,31 @@ public class AuctionClient {
             return false;
         }
 
-        System.out.println("Connecting to node " + node);
+        System.out.println("Connecting to node " + node + "...");
         try {
             a = (Auction) Naming.lookup("rmi:" + node);
             System.out.println("Connected.\n");
             return true;
         } catch (Exception e) {
-            System.out.println("Error connecting to node");
-            return false;
+            System.out.println("Couldn't connect");
         }
+
+        return false;
     }
 
     private boolean multipleRetry() {
         int i = 0;
         boolean finished;
 
+        System.out.println("Trying to reconnect\n");
+
         do {
             finished = reconnect();
             i++;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ie) {
+            }
         } while (i < 5 && !finished);
 
         return finished;
@@ -124,6 +132,7 @@ public class AuctionClient {
             if (multipleRetry()) {
                 try {
                     newUser(email, password);
+                    return;
                 } catch (Exception ex) {}
             }
             System.out.println("Failed to create user (serious)");
@@ -150,28 +159,10 @@ public class AuctionClient {
                 gui.sendMessage("Account doesn't exist");
             }
         } catch (Exception e) {
-            if (multipleRetry()) {
-                try {
-                    login(email, password);
-                } catch (Exception ex) {}
-            }
+            multipleRetry();
             gui.sendMessage("Failed to login (serious)");
         }
     }
-
-//    public void login(String email, String password) {
-//        User user = new User(email, password);
-//        try {
-//            if (a.login(user)) {
-//                currentUser = user;
-//                gui.proceedToAuction();
-//            } else {
-//                gui.sendMessage("Account doesn't exist");
-//            }
-//        } catch (Exception e) {
-//            gui.sendMessage("Failed to login (serious)");
-//        }
-//    }
 
     public void addItem(String name, double startPrice, double reservePrice) {
         if (startPrice > reservePrice) {
@@ -202,6 +193,7 @@ public class AuctionClient {
                 if (multipleRetry()) {
                     try {
                         addItem(name, startPrice, reservePrice);
+                        return;
                     } catch (Exception ex) {}
                 }
                 gui.sendMessage("Failed to create auction (serious)");
@@ -210,22 +202,6 @@ public class AuctionClient {
 
         listNodes();
     }
-
-//    public void addItem(String name, double startPrice, double reservePrice) {
-//        if (startPrice > reservePrice) {
-//            gui.sendMessage("Prices are wrong" );
-//            return;
-//        }
-//
-//        Item item;
-//        item = new Item(currentUser, name, startPrice, reservePrice);
-//        try {
-//            a.addItem(item);
-//            gui.sendMessage("Auction created");
-//        } catch (Exception e) {
-//            gui.sendMessage("(serious) Failed to create auction (serious)");
-//        }
-//    }
 
     public void bid(int id, double amount) {
         int result;
@@ -247,6 +223,7 @@ public class AuctionClient {
             if (multipleRetry()) {
                 try {
                     bid(id, amount);
+                    return;
                 } catch (Exception ex) {}
             }
             gui.sendMessage("Bid failed (serious)");
@@ -267,28 +244,6 @@ public class AuctionClient {
         }
     }
 
-//    public void bid(int id, double amount) {
-//        int result;
-//        try {
-//            result = a.bid(id, amount, currentUser);
-//        } catch (Exception e) {
-//            gui.sendMessage("Bid failed (serious)");
-//            return;
-//        }
-//
-//        switch (result) {
-//            case 3: gui.sendMessage("No auction exists");
-//                    break;
-//            case 2: gui.sendMessage("You can't bid on your own auctions!");
-//                    break;
-//            case 1: gui.sendMessage("Your bid was too small");
-//                    break;
-//            case 0: gui.sendMessage("Bid successful");
-//                    break;
-//            default:gui.sendMessage("What?");
-//                    break;
-//        }
-//    }
 
     /*
      * Set the 'won' boolean to true to check for only auctions
@@ -307,6 +262,7 @@ public class AuctionClient {
                 if (multipleRetry()) {
                     try {
                         populateList(list, won);
+                        return;
                     } catch (Exception ex) {}
                 }
                 System.out.println("Failed to get your won auctions");
@@ -318,6 +274,7 @@ public class AuctionClient {
                 if (multipleRetry()) {
                     try {
                         populateList(list, won);
+                        return;
                     } catch (Exception ex) {}
                 }
                 System.out.println("Failed to get available auctions");
@@ -354,6 +311,7 @@ public class AuctionClient {
             if (multipleRetry()) {
                 try {
                     closeAuction(id);
+                    return;
                 } catch (Exception ex) {}
             }
             gui.sendMessage("Couldn't close auction (serious)");

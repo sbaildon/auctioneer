@@ -125,8 +125,9 @@ public class GUI {
                     client.addItem(name.getText(),
                                 Double.parseDouble(startingPrice.getText()),
                                 Double.parseDouble(reservePrice.getText()));
-                    //auctionWindow.setVisible(false);
-                    //auctionWindow = setupAuction();
+                    auctionWindow.setVisible(false);
+                    auctionWindow = null;
+                    auctionWindow = setupAuction();
                     ok.getParent().setVisible(false);
                 } catch (Exception e) {
                     sendMessage("Need integers");
@@ -172,6 +173,9 @@ public class GUI {
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
                     client.bid(Integer.parseInt(itemId.getText()), Double.parseDouble(amount.getText()));
+                    auctionWindow.setVisible(false);
+                    auctionWindow = null;
+                    auctionWindow = setupAuction();
                     ok.getParent().setVisible(false);
                 } catch (Exception e) {
                     sendMessage("need integers");
@@ -198,6 +202,12 @@ public class GUI {
         bidDialog.setVisible(true);
     }
 
+    private void refresh() {
+        auctionWindow.setVisible(false);
+        auctionWindow = null;
+        auctionWindow = setupAuction();
+    }
+
     private void createCloseAuctionDialog() {
         final Button ok;
         final TextField id;
@@ -211,6 +221,8 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 client.closeAuction(Integer.parseInt(id.getText()));
+                auctionWindow.setVisible(false);
+                auctionWindow = null;
                 auctionWindow = setupAuction();
                 ok.getParent().setVisible(false);
 
@@ -251,7 +263,7 @@ public class GUI {
 
     private Panel buttonsPanel() {
         Panel panel;
-        Button createBtn, closeBtn, bidBtn;
+        Button createBtn, closeBtn, bidBtn, refresh;
 
         panel = new Panel();
 
@@ -279,9 +291,18 @@ public class GUI {
             }
         });
 
+        refresh = new Button("Refresh");
+        refresh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                refresh();
+            }
+        });
+
         panel.add(createBtn);
         panel.add(bidBtn);
         panel.add(closeBtn);
+        panel.add(refresh);
 
         return panel;
     }
