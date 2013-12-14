@@ -159,7 +159,12 @@ public class AuctionClient {
                 gui.sendMessage("Account doesn't exist");
             }
         } catch (Exception e) {
-            multipleRetry();
+            if (multipleRetry()) {
+                try {
+                    login(email, password);
+                    return;
+                } catch (Exception ex) {}
+            }
             gui.sendMessage("Failed to login (serious)");
         }
     }
@@ -190,12 +195,7 @@ public class AuctionClient {
                 gui.sendMessage("Auction created");
                 return;
             } catch (Exception e) {
-                if (multipleRetry()) {
-                    try {
-                        addItem(name, startPrice, reservePrice);
-                        return;
-                    } catch (Exception ex) {}
-                }
+                multipleRetry();
                 gui.sendMessage("Failed to create auction (serious)");
             }
         }
